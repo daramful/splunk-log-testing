@@ -1,9 +1,10 @@
 name: Scorecards supply-chain security
 on:
+  workflow_dispatch: # manual trigger
   # Only the default branch is supported.
-  branch_protection_rule:
-  schedule:
-    - cron: '19 20 * * 2'
+  # branch_protection_rule:
+  # schedule:
+  #   - cron: '19 20 * * 2'
 
 
 # Declare default permissions as read only.
