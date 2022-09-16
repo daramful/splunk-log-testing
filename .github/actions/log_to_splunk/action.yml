@@ -2,9 +2,6 @@
 name: 'Send Workflow Logs to Splunk'
 description: 'Upload GitHub Workflow logs to Splunk HEC'
 inputs:
-  splunk-url:
-    description: 'Full URL for Splunk HEC endpoint'
-    required: true
   sourcetype:
     description: 'Splunk Sourcetype'
     default: 'github_workflow_log_action'
@@ -15,6 +12,9 @@ inputs:
     description: 'The Workflow Run number'
     default: ${{ github.run_number}}
 secrets:
+  splunk-url:
+    description: 'Full URL for Splunk HEC endpoint'
+    required: true
   hec-token:
     description: 'Splunk HEC Token'
     required: true
