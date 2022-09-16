@@ -29,7 +29,6 @@ jobs:
         with:
           workflowID: ${{ env.triggerID }}
           source: ${{ env.triggerJob }}
-        secrets:
           splunk-url: ${{ secrets.HEC_URL }}
           hec-token: ${{ secrets.HEC_TOKEN }}
           github-token: ${{ secrets.GH_PAT }}
