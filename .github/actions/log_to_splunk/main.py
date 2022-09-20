@@ -146,7 +146,6 @@ def main():
                 job_name=job_name.group('job')
                 fields = {'lineNumber':count,'workflowID':GITHUB_WORKFLOWID,'job':job_name}
                 if x:
-                    print('batch', batch)
                     batch+=1
                     event={'event':x,'sourcetype':SPLUNK_SOURCETYPE,'source':SPLUNK_SOURCE,'host':host,'time':timestamp,'fields':fields}
                     eventBatch=eventBatch+json.dumps(event)
