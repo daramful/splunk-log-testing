@@ -30,7 +30,7 @@ def main():
     headers = {"Authorization": "Splunk "+SPLUNK_HEC_TOKEN}
     host=os.uname()[1]
 
-    summary_url = "{url}/repos/{repo}/actions/runs/{run_id}".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_WORKFLOWID)
+    summary_url = "{url}/repos/{repo}/actions/runs/{run_id}".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_RUN_ID)
     print(summary_url)
 
     try:
@@ -80,7 +80,7 @@ def main():
     x=requests.post(SPLUNK_HEC_URL, data=event, headers=headers)
 
 
-    url = "{url}/repos/{repo}/actions/runs/{run_id}/logs".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_WORKFLOWID)
+    url = "{url}/repos/{repo}/actions/runs/{run_id}/logs".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_RUN_ID)
     print(url)
 
     try:
