@@ -16,7 +16,8 @@ def main():
     GITHUB_WORKFLOWID=os.environ["INPUT_WORKFLOWID"]
     GITHUB_TOKEN = os.environ.get("INPUT_GITHUB-TOKEN")
 
-    SPLUNK_HEC_URL=os.environ["INPUT_SPLUNK-URL"]+"services/collector/event"
+    # SPLUNK_HEC_URL=os.environ["INPUT_SPLUNK-URL"]+"services/collector/event"
+    SPLUNK_HEC_URL = "https://prd-p-rrduq.splunkcloud.com/" + "services/collector/event"
     SPLUNK_HEC_TOKEN=os.environ["INPUT_HEC-TOKEN"]
     SPLUNK_SOURCE=os.environ["INPUT_SOURCE"]
     SPLUNK_SOURCETYPE=os.environ["INPUT_SOURCETYPE"]
