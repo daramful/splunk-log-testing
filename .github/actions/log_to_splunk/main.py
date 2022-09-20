@@ -107,10 +107,11 @@ def main():
         print(f"::set-output name=result::{output}")
         return
 
-    # z = zipfile.ZipFile(io.BytesIO(x.content))
-    # z.extractall('/app')
-    with x.open() as gzip_file:
-        gzip_file.extractall('/app')
+    content = io.BytesIO(x.content)
+    print('content consumed')
+    z = zipfile.ZipFile(content)
+    print('zip')
+    z.extractall('/app')
 
     timestamp = batch = count = 0
 
