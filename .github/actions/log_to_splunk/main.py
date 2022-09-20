@@ -24,6 +24,8 @@ def main():
     print('GITHUB_REF', GITHUB_REF)
     print('GITHUB_RUN_ID', GITHUB_RUN_ID)
     print('GITHUB_WORKFLOWID', GITHUB_WORKFLOWID)
+    print('SPLUNK_SOURCE', SPLUNK_SOURCE)
+    print('SPLUNK_SOURCETYPE', SPLUNK_SOURCETYPE)
     
     batch = count = 0
     eventBatch = ""
@@ -108,9 +110,14 @@ def main():
         return
 
     content = io.BytesIO(x.content)
-    print('content consumed', x.content)
+    try: 
+        isJson = json.loads(x.content)
+        print('content returns json', isJson)
+        return 
+    except:
+        print('good to zip')
+
     z = zipfile.ZipFile(content)
-    print('zip')
     z.extractall('/app')
 
     timestamp = batch = count = 0
