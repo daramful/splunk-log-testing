@@ -20,14 +20,17 @@ def main():
     SPLUNK_HEC_TOKEN=os.environ["INPUT_HEC-TOKEN"]
     SPLUNK_SOURCE=os.environ["INPUT_SOURCE"]
     SPLUNK_SOURCETYPE=os.environ["INPUT_SOURCETYPE"]
-
+    print('GITHUB_REF', GITHUB_REF)
+    print('GITHUB_RUN_ID', GITHUB_RUN_ID)
+    print('GITHUB_WORKFLOWID', GITHUB_WORKFLOWID)
+    
     batch = count = 0
     eventBatch = ""
     headers = {"Authorization": "Splunk "+SPLUNK_HEC_TOKEN}
     host=os.uname()[1]
 
     summary_url = "{url}/repos/{repo}/actions/runs/{run_id}".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_RUN_ID)
-    # summary_url = "{url}/repos/{repo}/commits".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY)
+    print(summary_url)
 
     try:
         x = requests.get(summary_url, stream=True, auth=('token',GITHUB_TOKEN))
