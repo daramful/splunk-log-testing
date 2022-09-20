@@ -30,7 +30,7 @@ def main():
     headers = {"Authorization": "Splunk "+SPLUNK_HEC_TOKEN}
     host=os.uname()[1]
 
-    summary_url = "{url}/repos/{repo}/actions/runs/{run_id}".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_RUN_ID)
+    summary_url = "{url}/repos/{repo}/actions/runs/{run_id}".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_WORKFLOWID)
     print(summary_url)
 
     try:
@@ -80,7 +80,7 @@ def main():
     x=requests.post(SPLUNK_HEC_URL, data=event, headers=headers)
 
 
-    url = "{url}/repos/{repo}/actions/runs/{run_id}/logs".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_RUN_ID)
+    url = "{url}/repos/{repo}/actions/runs/{run_id}/logs".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_WORKFLOWID)
     print(url)
 
     try:
@@ -108,7 +108,7 @@ def main():
         return
 
     content = io.BytesIO(x.content)
-    print('content consumed')
+    print('content consumed', x.content)
     z = zipfile.ZipFile(content)
     print('zip')
     z.extractall('/app')
