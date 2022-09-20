@@ -3,10 +3,10 @@ name: Send Workflow Logs to Splunk
 # Controls when the action will run.
 on:
   workflow_dispatch: # manual trigger
-  # workflow_run:
-  #   workflows: ["*"]
-  #   types:
-  #     - completed
+  workflow_run:
+    workflows: ["*"]
+    types:
+      - completed
 
 env:
   triggerID: ${{ github.event.workflow_run.id }}
@@ -23,8 +23,8 @@ jobs:
       - name: Output Job ID
         run: echo ${{ github.event.workflow_run.id }}
 
-      - name: Output Job ID
-        run: echo ${{ github.event.workflow_run.id }}
+      - name: Output Run ID
+        run: echo ${{ github.event.inputs.id }}
 
       - name: Send Workflow logs to Splunk
         if: ${{ always() }}
