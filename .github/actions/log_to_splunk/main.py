@@ -155,9 +155,9 @@ def main():
 
                 if batch>=500:
                     batch=0
-                    print(eventBatch)
+                    # print(eventBatch)
                     x=requests.post(SPLUNK_HEC_URL, data=eventBatch, headers=headers)
-                    print(x)
+                    print(x.json())
                     eventBatch=""
 
     x=requests.post(SPLUNK_HEC_URL, data=eventBatch, headers=headers)
