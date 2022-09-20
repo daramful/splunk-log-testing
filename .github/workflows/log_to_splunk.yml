@@ -15,23 +15,27 @@ env:
 jobs:
   WriteLogs:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.name!='WriteLogs'}}
+    # if: ${{ github.event.workflow_run.name!='WriteLogs'}}
 
     steps:
+    
       - uses: actions/checkout@v2
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
 
       - name: Output Job ID
         run: echo ${{ github.event.workflow_run.id }}
-
-      - name: Output Run ID
-        run: echo ${{ github.event.inputs.id }}
 
       - name: Send Workflow logs to Splunk
         if: ${{ always() }}
         uses: ./.github/actions/log_to_splunk
         with:
-          workflowID: ${{ env.triggerID }}
-          source: ${{ env.triggerJob }}
           splunk-url: ${{ secrets.HEC_URL }}
           hec-token: ${{ secrets.HEC_TOKEN }}
           github-token: ${{ secrets.GH_PAT }}
+          workflowID: ${{ env.triggerID }}
+          source: ${{ env.triggerJob }}
