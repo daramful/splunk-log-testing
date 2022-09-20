@@ -79,7 +79,7 @@ def main():
 
     print(SPLUNK_HEC_URL)
 
-    x=requests.post(SPLUNK_HEC_URL, data=event, headers=headers)
+    x=requests.post(SPLUNK_HEC_URL, data=event, headers=headers, verify=False)
 
 
     url = "{url}/repos/{repo}/actions/runs/{run_id}/logs".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_WORKFLOWID)
@@ -156,12 +156,12 @@ def main():
                 if batch>=500:
                     # batch=0
                     # print(eventBatch)
-                    # x=requests.post(SPLUNK_HEC_URL, data=eventBatch, headers=headers)
+                    # x=requests.post(SPLUNK_HEC_URL, data=eventBatch, headers=headers, verify=False)
                     # eventBatch=""
                     break
                     
 
-    x=requests.post(SPLUNK_HEC_URL, data=eventBatch, headers=headers)
+    x=requests.post(SPLUNK_HEC_URL, data=eventBatch, headers=headers, verify=False)
 
     try:
         print(x.content)
