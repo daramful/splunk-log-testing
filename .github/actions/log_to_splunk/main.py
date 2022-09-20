@@ -27,6 +27,7 @@ def main():
     host=os.uname()[1]
 
     summary_url = "{url}/repos/{repo}/actions/runs/{run_id}".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY,run_id=GITHUB_WORKFLOWID)
+    # summary_url = "{url}/repos/{repo}/commits".format(url=GITHUB_API_URL,repo=GITHUB_REPOSITORY)
 
     try:
         x = requests.get(summary_url, stream=True, auth=('token',GITHUB_TOKEN))
