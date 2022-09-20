@@ -9,8 +9,8 @@ on:
       - completed
 
 env:
-  triggerID: ${{ github.event.workflow_run.id }}
-  triggerJob: ${{ github.event.workflow_run.name }}
+  triggerID: ${{ github.run_id }}
+  triggerJob: ${{ github.event.workflow }}
 
 jobs:
   WriteLogs:
@@ -28,7 +28,7 @@ jobs:
           echo "$GITHUB_CONTEXT"
 
       - name: Output Job ID
-        run: echo ${{ github.event.workflow_run.id }}
+        run: echo ${{ github.run_id }}
 
       - name: Send Workflow logs to Splunk
         if: ${{ always() }}
