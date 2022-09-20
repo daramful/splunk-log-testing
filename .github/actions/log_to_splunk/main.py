@@ -112,8 +112,8 @@ def main():
     content = io.BytesIO(x.content)
     try: 
         isJson = json.loads(x.content)
-        print('content returns json', isJson)
-        return 
+        print()
+        raise Exception('content returns json', str(isJson))
     except:
         print('good to zip')
 
