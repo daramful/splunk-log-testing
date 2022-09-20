@@ -153,7 +153,7 @@ def main():
                 else:
                     print("skipped line "+str(count))
 
-                if batch>=1000:
+                if batch>=500:
                     batch=0
                     print(eventBatch)
                     x=requests.post(SPLUNK_HEC_URL, data=eventBatch, headers=headers)
