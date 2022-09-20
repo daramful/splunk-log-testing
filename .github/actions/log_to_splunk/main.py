@@ -154,14 +154,20 @@ def main():
                     print("skipped line "+str(count))
 
                 if batch>=500:
-                    batch=0
+                    # batch=0
                     # print(eventBatch)
-                    x=requests.post(SPLUNK_HEC_URL, data=eventBatch, headers=headers)
-                    print(x.json())
-                    eventBatch=""
+                    # x=requests.post(SPLUNK_HEC_URL, data=eventBatch, headers=headers)
+                    # eventBatch=""
+                    break
+                    
 
     x=requests.post(SPLUNK_HEC_URL, data=eventBatch, headers=headers)
-    print(x)
 
+    try:
+        print(x.content)
+        print(json.dumps(x))
+    except:
+        print('can\'t parse')
+    
 if __name__ == '__main__':
     main()
