@@ -140,11 +140,15 @@ def main():
                 else:
                     timestamp=t2
 
+                print('line', line)
                 x = re.sub("\d{4}-\d{2}-\d{2}T\d+:\d+:\d+.\d+Z","",line.strip())
                 x=x.strip()
+                print('x', x)
                 job_name=re.search("\/\d+\_(?P<job>.*)\.txt",name)
                 job_name=job_name.group('job')
                 fields = {'lineNumber':count,'workflowID':GITHUB_WORKFLOWID,'job':job_name}
+                print('fields', fields)
+                print('x2', x)
                 if x:
                     batch+=1
                     event={'event':x,'sourcetype':SPLUNK_SOURCETYPE,'source':SPLUNK_SOURCE,'host':host,'time':timestamp,'fields':fields}
