@@ -1,0 +1,19 @@
+name: Send Workflow Logs to Splunk
+
+# Controls when the action will run.
+on:
+  workflow_dispatch: # manual trigger
+  workflow_run:
+    workflows: ["*"]
+    types:
+      - completed
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    variables: 
+      token: 'POC_HECTOKEN'
+    # if: ${{ github.event.workflow_run.name!='WriteLogs'}}
+    steps:
+      - name: Output Job ID
+        run: echo ${!token}
